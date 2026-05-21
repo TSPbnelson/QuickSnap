@@ -54,7 +54,8 @@ public class TrayApplicationContext : ApplicationContext
 
     private void StartRegionCapture()
     {
-        using var overlay = new OverlayForm();
+        var activeScreen = Screen.FromPoint(Cursor.Position);
+        using var overlay = new OverlayForm(activeScreen);
         if (overlay.ShowDialog() == DialogResult.OK && overlay.SelectedBitmap != null)
             Save(overlay.SelectedBitmap);
     }

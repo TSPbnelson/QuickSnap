@@ -15,11 +15,13 @@ public class OverlayForm : Form
 
     public Bitmap? SelectedBitmap { get; private set; }
 
-    public OverlayForm()
+    private readonly Screen _activeScreen;
+
+    public OverlayForm(Screen activeScreen)
     {
-        var screen = SystemInformation.VirtualScreen;
+        _activeScreen = activeScreen;
         FormBorderStyle = FormBorderStyle.None;
-        Bounds = screen;
+        Bounds = activeScreen.Bounds;
         TopMost = true;
         ShowInTaskbar = false;
         Cursor = Cursors.Cross;
@@ -31,13 +33,13 @@ public class OverlayForm : Form
     protected override void OnLoad(EventArgs e)
     {
         base.OnLoad(e);
-        CaptureAllScreens();
+        CaptureScreen();
         Invalidate();
     }
 
-    private void CaptureAllScreens()
+    private void CaptureScreen()
     {
-        var bounds = SystemInformation.VirtualScreen;
+        var bounds = _activeScreen.Bounds;
         _screenCapture = new Bitmap(bounds.Width, bounds.Height, PixelFormat.Format32bppArgb);
         using var g = Graphics.FromImage(_screenCapture);
         g.CopyFromScreen(bounds.Location, Point.Empty, bounds.Size);
