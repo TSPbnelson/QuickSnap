@@ -1,0 +1,12 @@
+{
+  "SavePath": "\\\\192.168.1.1\\ITSupport\\Imports",
+  "LocalBackupPath": "",
+  "UsernamePrefix": "",
+  "CopyToClipboard": true,
+  "ShowNotification": true,
+  "ImageFormat": "png",
+  "JpgQuality": 90,
+  "HotkeyModifier": "Ctrl",
+  "HotkeyKey": "PrintScreen",
+  "RunOnStartup": false
+}
