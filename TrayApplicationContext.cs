@@ -7,6 +7,7 @@ public class TrayApplicationContext : ApplicationContext
     private NotifyIcon _trayIcon = null!;
     private HotkeyManager _hotkey = null!;
     private AppSettings _settings;
+    private readonly Icon _trayIconImage = ClipboardIcon.Create();
 
     public TrayApplicationContext()
     {
@@ -30,7 +31,7 @@ public class TrayApplicationContext : ApplicationContext
         _trayIcon = new NotifyIcon
         {
             Text = "QuickSnap",
-            Icon = SystemIcons.Application,
+            Icon = _trayIconImage,
             Visible = true,
             ContextMenuStrip = menu
         };
@@ -156,6 +157,7 @@ public class TrayApplicationContext : ApplicationContext
         {
             _trayIcon?.Dispose();
             _hotkey?.Dispose();
+            _trayIconImage?.Dispose();
         }
         base.Dispose(disposing);
     }
